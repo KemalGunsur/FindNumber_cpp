@@ -9,6 +9,7 @@ int main()
    char replay;
    int kalan_hak, random_sayi, tahmin;
    string basari = "basari sonucunuz : ";
+
 tekraroyna:
    // sayı oluşturma kodları
    random_device rd;
@@ -26,10 +27,21 @@ islemegiris:
    cout << "tahmininizi giriniz: ";
    cin >> tahmin;
 
+   //bu if komutunu öğren bu komut yapay zekadan alındı terminalde yanlış bilgilerin girilmesini engellemek için
+if (cin.fail()) {
+       cin.clear();
+       cin.ignore(10000, '\n');
+       
+       cout << "Hata! Lutfen harf degil, sadece SAYI giriniz.\n" << endl;
+       goto islemegiris; 
+   }
+
+
+
+
    if (tahmin == random_sayi)
    {
       cout << "Sayiyi dogru tahmin ettiniz :)"<<endl;
-      // burası için goto çıkış ekleyebilirim
       goto degerlendirme;
    }
    else
@@ -51,7 +63,7 @@ islemegiris:
       }
       else
       {
-         cout << "Hakkiniz bitti";
+         cout << "Hakkiniz bitti"<<endl;
       }
    }
    degerlendirme:
@@ -72,8 +84,9 @@ islemegiris:
    else
    {
       cout << basari << "Lutfen Kendinizi Gelistiriniz" << endl;
+      cout<<"tahmin edilmeye calisilan sayi : "<<random_sayi<<endl;
    }
-   // kullanıcı tekrar oynamak ister ise goto kullanıp işlem başlangıcına gönderebilirim burda da if else kullanıcam
+   // kullanıcı tekrar oynamak ister ise goto kullanıp işlem başlangıcına gönderebilirim burda da swtich case kullanıcam
    cout << "Tekrar oynamak istermisiniz(E/H) : ";
    cin >> replay;
    switch (replay)
@@ -84,11 +97,12 @@ islemegiris:
       break;
    case 'H':
    case 'h':
-      cout << "Oyun bitti, iyi gunler :)";
+      cout << "Oyun bitti, iyi gunler :)"<<endl;
       break;
    default:
-      cout << "Gecersiz secim, oyun bitti.";
+      cout << "Gecersiz secim, oyun bitti."<<endl;
    }
+   system("pause");
 
    return (0);
 }
